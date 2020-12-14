@@ -8,6 +8,9 @@ public class LockedMeMain
 	{
 		Scanner scan = new Scanner(System.in);
 		
+		FileHandler fh = new FileHandler();
+		
+		String modFile;
 		//The following print statements represent what we should expect for the welcome menu to start
 		System.out.println("\n==========================================\n");
 		System.out.println("        LOCKEDME.COM  FILE MANAGER");
@@ -49,12 +52,24 @@ public class LockedMeMain
 						{
 							case(1):
 								System.out.println("\nAdding a file\n");
+								System.out.println("What is the name of the file you want to add(include file extensions)?");
+								scan.nextLine();
+								modFile = scan.nextLine();
+								fh.AddFile(modFile);
 								break;
 							case(2):
 								System.out.println("\nDeleting a file\n");
+								System.out.println("What is the name of the file you want to delete(include file extensions)?");
+								scan.nextLine();
+								modFile = scan.nextLine();
+								fh.DeleteFile(modFile);
 								break;	
 							case(3):
 								System.out.println("\nSearching for a file\n");
+								System.out.println("What is the name of the file you want to search for(include file extensions)?");
+								scan.nextLine();
+								modFile = scan.nextLine();
+								fh.SearchFile(modFile);
 								break;	
 							case(4):
 								System.out.println("\nQuiting to main menu\n");
@@ -77,5 +92,6 @@ public class LockedMeMain
 		}
 		while(firstMenuSelection != 3);
 		
+		scan.close();
 	}
 }
