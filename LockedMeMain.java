@@ -18,8 +18,8 @@ public class LockedMeMain
 		System.out.println("\n==========================================");
 		System.out.println("\n                 WELCOME!");
 		
-		int firstMenuSelection = 3;
-		int secondMenuSelection = 4;
+		int firstMenuSelection = 4;
+		int secondMenuSelection = 5;
 		
 		//Since we know we want to do this until the user hits the quit button, we can use a do while loop
 		do
@@ -29,7 +29,8 @@ public class LockedMeMain
 			System.out.println("\t2. Modify files\n");
 			System.out.println("\t3. Close Application\n");
 			
-			firstMenuSelection = scan.nextInt();
+			if(scan.hasNextInt())
+				firstMenuSelection = scan.nextInt();
 			
 			switch(firstMenuSelection)
 			{
@@ -48,7 +49,8 @@ public class LockedMeMain
 						System.out.println("\t2. Delete file\n");
 						System.out.println("\t3. Search for a file\n");
 						System.out.println("\t4. Return to main menu\n");
-						secondMenuSelection = scan.nextInt();
+						if(scan.hasNextInt())
+							secondMenuSelection = scan.nextInt();
 						
 						switch(secondMenuSelection)
 						{
