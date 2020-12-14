@@ -34,6 +34,7 @@ public class LockedMeMain
 			{
 				case(1):
 					System.out.println("\nShowing files in ascending order.");
+					fh.ascendingFiles();
 					break;
 					
 				//Uses a do while loop within the current one to act as a submenu until user decides to back-out to main menu
@@ -92,6 +93,7 @@ public class LockedMeMain
 		}
 		while(firstMenuSelection != 3);
 		
+		fh.close();
 		scan.close();
 	}
 }

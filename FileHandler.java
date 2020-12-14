@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class FileHandler
 {
 	static final Scanner sc = new Scanner(System.in);
 	
+	//Attempts to create a new file or alerts the user if it exists, then writes a default message to these generated files
 	public void AddFile(String fileName)
 	{
 		try 
@@ -47,6 +49,8 @@ public class FileHandler
 		}
 	}
 	
+	
+	//Checks if file exists and deletes it if the user wishes to
 	public void DeleteFile(String fileName)
 	{
 		File f = new File(fileName);
@@ -64,6 +68,8 @@ public class FileHandler
 		}
 	}
 	
+	
+	//Uses the search function to recursively search c: 
 	public void SearchFile(String fileName)
 	{
 		File f = new File(fileName);
@@ -74,6 +80,7 @@ public class FileHandler
 		search(file, f);
 	}
 	
+	//Using a DFS the recursive function will calculate whole branches to their ends and backtrack to check every directory
 	private void search(File file, File f)
 	{
 		File[] files = file.listFiles();
@@ -81,7 +88,6 @@ public class FileHandler
 		if(files != null)
 			for (File fuf: files) 
 			{
-				//System.out.println(fuf.getName());
 				if (fuf.getName().equals(f.getName())) 
 				{
 					System.out.println("File found at " + fuf.toString());
@@ -91,4 +97,49 @@ public class FileHandler
 					search(fuf, f);
 			}
 	}
+	
+	
+	//used below
+	private ArrayList<String> fileNames;
+	
+	//Uses ascRecursive to gather all files in the current directory then sorts them using collections and prints each file
+	public void ascendingFiles()
+	{
+		File file = new File(System.getProperty("user.dir"));
+		
+		fileNames = new ArrayList<String>();
+		
+		ascRecursive(file);
+		
+		Collections.sort(fileNames);
+		
+		System.out.println("The files in the current directory(and it's directories) are: ");
+		for(String f: fileNames)
+		{
+			System.out.println(f);
+		}
+	}
+	
+	//Using a DFS this adds every filename to fileNames
+	private void ascRecursive(File file)
+	{
+		File[] files = file.listFiles();
+		
+		if(files != null)
+		{
+			for (File fuf: files)
+			{
+				if (!fuf.isDirectory())
+					fileNames.add(fuf.getName());
+				else
+					ascRecursive(fuf);
+			}
+		}
+	}
+	
+	public void close()
+	{
+		sc.close();
+	}
+
 }
