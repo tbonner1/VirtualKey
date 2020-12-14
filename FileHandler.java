@@ -3,6 +3,7 @@ package pack;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler
@@ -66,6 +67,28 @@ public class FileHandler
 	public void SearchFile(String fileName)
 	{
 		File f = new File(fileName);
-		System.out.println("Filename to search is: " + f.getName());
+		
+		File file = new File("c:\\");
+		
+		System.out.println("Searching all directories in c:");
+		search(file, f);
+	}
+	
+	private void search(File file, File f)
+	{
+		File[] files = file.listFiles();
+		
+		if(files != null)
+			for (File fuf: files) 
+			{
+				//System.out.println(fuf.getName());
+				if (fuf.getName().equals(f.getName())) 
+				{
+					System.out.println("File found at " + fuf.toString());
+					break;
+				}
+				else if(fuf.isDirectory())
+					search(fuf, f);
+			}
 	}
 }
