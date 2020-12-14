@@ -14,6 +14,7 @@ public class LockedMeMain
 		//The following print statements represent what we should expect for the welcome menu to start
 		System.out.println("\n==========================================\n");
 		System.out.println("        LOCKEDME.COM  FILE MANAGER");
+		System.out.println("        Written by Tennessee Bonner");
 		System.out.println("\n==========================================");
 		System.out.println("\n                 WELCOME!");
 		

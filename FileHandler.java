@@ -77,11 +77,14 @@ public class FileHandler
 		File file = new File("c:\\");
 		
 		System.out.println("Searching all directories in c:");
-		search(file, f);
+		boolean found = search(file, f);
+		
+		if(!found)
+			System.out.println("File not found.");
 	}
 	
 	//Using a DFS the recursive function will calculate whole branches to their ends and backtrack to check every directory
-	private void search(File file, File f)
+	private boolean search(File file, File f)
 	{
 		File[] files = file.listFiles();
 		
@@ -91,11 +94,15 @@ public class FileHandler
 				if (fuf.getName().equals(f.getName())) 
 				{
 					System.out.println("File found at " + fuf.toString());
-					break;
+					return true;
 				}
-				else if(fuf.isDirectory())
-					search(fuf, f);
+				else if(fuf.isDirectory()) 
+				{
+					if (search(fuf, f))
+						return true;
+				}
 			}
+		return false;
 	}
 	
 	
